@@ -7,28 +7,28 @@ replicaCount: 1
 services:
   frontendapp:
     name: frontendapp
-    image: "siestageek/frontendapp" # Replace with your actual image name
+    image: "siestageek/frontendapps" # Replace with your actual image name
     tag: latest
     port: 3000
     nport: 32321
 
   couponapp:
     name: couponapp  
-    image: "siestageek/couponapp" # Replace with your actual image name
+    image: "siestageek/couponapps" # Replace with your actual image name
     tag: latest
     port: 8040
     nport: 32322
 
   discountapp:
     name: discountapp  
-    image: "siestageek/discountapp" # Replace with your actual image name
+    image: "siestageek/discountapps" # Replace with your actual image name
     tag: latest
     port: 8050
     nport: 32323   
 
   memberapp:
     name: memberapp  
-    image: "siestageek/memberapp" # Replace with your actual image name
+    image: "siestageek/memberapps" # Replace with your actual image name
     tag: latest
     port: 8030
     nport: 32324
