@@ -1,0 +1,31 @@
+{{- $servicelist := .Values.services }}
+{{- range $service := $servicelist }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $service.name }}-service
+spec:
+  selector:
+    app: {{ $service.name }}
+  ports:
+    - protocol: TCP
+      port: {{ $service.port }}
+      targetPort: {{ $service.port }}
+      nodePort: {{ $service.nport }}
+  type: NodePort
+{{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: {{ .Values.nginx.port }}
+      targetPort: {{ .Values.nginx.port  }}
+      nodePort: {{ .Values.nginx.nport  }}
+  type: NodePort

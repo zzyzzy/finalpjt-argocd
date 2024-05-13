@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  default.conf: |
+    # Nginx configuration for reverse proxy
+    server {
+      listen 80;
+      server_name abc123.com;
+
+      location / {
+        root /usr/share/nginx/html;
+        index index.html index.html;
+      }
+
+      location /login {
+        proxy_pass http://frontendapp-service:3000/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Forwarded-Prefix /login;
+        proxy_set_header X-Forwarded-Uri $uri;
+      }
+
+
+      location /coupon {
+        proxy_pass http://couponapp-service:8040/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Forwarded-Prefix /coupon;
+        proxy_set_header X-Forwarded-Uri $uri;
+      }
+
+      location /discount {
+        proxy_pass http://discountapp-service:8050/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Forwarded-Prefix /discount;
+        proxy_set_header X-Forwarded-Uri $uri;
+      }
+
+
+      location /member {
+        proxy_pass http://memberapp-service:8030/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Forwarded-Prefix /member;
+        proxy_set_header X-Forwarded-Uri $uri;
+      }
+
+      
+      location /js {
+        proxy_pass http://frontendapp-service:3000/js/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Forwarded-Prefix /login;
+        proxy_set_header X-Forwarded-Uri $uri;
+      } 
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-html
+data:
+  index.html: |
+    <h1>Hello, ArgoCD!! Hello, GitOps!!</h1>

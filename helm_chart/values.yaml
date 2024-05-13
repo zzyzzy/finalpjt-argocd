@@ -1,0 +1,42 @@
+# Default values for hellomsa.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+services:
+  frontendapp:
+    name: frontendapp
+    image: "siestageek/frontendapp" # Replace with your actual image name
+    tag: latest
+    port: 3000
+    nport: 32321
+
+  couponapp:
+    name: couponapp  
+    image: "siestageek/couponapp" # Replace with your actual image name
+    tag: latest
+    port: 8040
+    nport: 32322
+
+  discountapp:
+    name: discountapp  
+    image: "siestageek/discountapp" # Replace with your actual image name
+    tag: latest
+    port: 8050
+    nport: 32323   
+
+  memberapp:
+    name: memberapp  
+    image: "siestageek/memberapp" # Replace with your actual image name
+    tag: latest
+    port: 8030
+    nport: 32324
+    
+    
+nginx:
+  image: nginx
+  tag: latest
+  port: 80
+  nport: 30742
+  
