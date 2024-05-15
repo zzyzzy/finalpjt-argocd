@@ -20,6 +20,9 @@ spec:
         image: {{ $service.image }}:{{ $service.tag }}
         ports:
         - containerPort: {{ $service.port }}
+        envFrom:
+          - secretRef:
+              name: finalpjt-secret
 {{- end }}
 ---
 apiVersion: apps/v1
