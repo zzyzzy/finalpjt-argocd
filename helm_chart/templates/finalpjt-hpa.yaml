@@ -9,7 +9,7 @@ spec:
     name: frontendapp
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 20
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -22,7 +22,7 @@ spec:
     name: couponapp
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 20
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -35,7 +35,7 @@ spec:
     name: discountapp
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 20
 ---  
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -48,5 +48,5 @@ spec:
     name: memberapp
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 50  
+  targetCPUUtilizationPercentage: 20  
   
